@@ -2,6 +2,8 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
 const balls = [];
+const colors = ["#64d0AA","#13B3BF","#FF0000","#8C00FF","#84FF00"]
+
 
 class Ball {
     constructor(x, y, dx, dy, radius, color) {
@@ -49,25 +51,19 @@ class Ball {
 
   canvas.addEventListener('click', function(event) {
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 3; i++) {
         const radius = Math.random() * 10 + 10;
         const x = Math.random() * (canvas.width - radius * 2) + radius;
         const y = Math.random() * (canvas.height - radius * 2) + radius;
         const dx = (Math.random() - 0.5) * 10;
         const dy = (Math.random() - 0.5) * 10;
-        const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+
+        var rand = Math.floor(Math.random()*colors.length);   
+
+        const color =  colors[rand];
       
         balls.push(new Ball(x, y, dx, dy, radius, color));
       }
-      
-    const radius = Math.random() * 0 + 10;
-    const x = event.clientX - canvas.offsetLeft;
-    const y = event.clientY - canvas.offsetTop;
-    const dx = (Math.random() - 0.5) * 10;
-    const dy = (Math.random() - 0.5) * 10;
-    const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
-  
-    balls.push(new Ball(x, y, dx, dy, radius, color));
   });
 
   
