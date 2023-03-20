@@ -36,16 +36,7 @@ class Ball {
     }
   }
 
-  for (let i = 0; i < 5; i++) {
-    const radius = Math.random() * 0 + 10;
-    const x = Math.random() * (canvas.width - radius * 2) + radius;
-    const y = Math.random() * (canvas.height - radius * 2) + radius;
-    const dx = (Math.random() - 0.5) * 10;
-    const dy = (Math.random() - 0.5) * 10;
-    const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
   
-    balls.push(new Ball(x, y, dx, dy, radius, color));
-  }
 
   function animate() {
     requestAnimationFrame(animate);
@@ -55,3 +46,28 @@ class Ball {
   }
   
   animate();
+
+  canvas.addEventListener('click', function(event) {
+
+    for (let i = 0; i < 5; i++) {
+        const radius = Math.random() * 10 + 10;
+        const x = Math.random() * (canvas.width - radius * 2) + radius;
+        const y = Math.random() * (canvas.height - radius * 2) + radius;
+        const dx = (Math.random() - 0.5) * 10;
+        const dy = (Math.random() - 0.5) * 10;
+        const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+      
+        balls.push(new Ball(x, y, dx, dy, radius, color));
+      }
+      
+    const radius = Math.random() * 0 + 10;
+    const x = event.clientX - canvas.offsetLeft;
+    const y = event.clientY - canvas.offsetTop;
+    const dx = (Math.random() - 0.5) * 10;
+    const dy = (Math.random() - 0.5) * 10;
+    const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+  
+    balls.push(new Ball(x, y, dx, dy, radius, color));
+  });
+
+  
